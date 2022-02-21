@@ -4,7 +4,9 @@ A Python toolbox for binary vectors.
 
 ## Installation
 
-Install this package by running `pip install git+https://github.com/smuecke/bitvec.git` in your console.
+Install this package by running this in your console:
+
+```pip install git+https://github.com/smuecke/bitvec.git```
 
 
 ## Examples
