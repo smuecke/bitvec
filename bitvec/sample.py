@@ -2,7 +2,7 @@ import itertools
 
 import numpy as np
 
-from misc import _get_random_state, _format_shape, binom
+from .misc import _get_random_state, _format_shape, binom
 
 
 #
