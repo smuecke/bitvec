@@ -10,7 +10,7 @@ def norm(bitvec):
 
 
 def to_int(bitvec):
-    return (bitvec * 2**np.arange(bitvec.size)).sum()
+    return int((bitvec * 2**np.arange(bitvec.size)).sum())
 
 
 #
