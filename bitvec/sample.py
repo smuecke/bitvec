@@ -6,30 +6,8 @@ from .misc import _get_random_state, _format_shape, binom
 
 
 #
-# Methods for Bit Vector Creation
-#
-
-def zeros(dim: int):
-    return np.zeros(dim, dtype=np.float64)
-
-
-def ones(dim: int):
-    return np.ones(dim, dtype=np.float64)
-
-
-def from_int(n: int, dim: int=None):
-    fmt = f'0{dim}b' if dim else '0b'
-    return np.fromiter(format(n, fmt)[::-1], dtype=np.float64)
-
-
-def unit(k: int, dim: int=None):
-    return from_int(1 << k, dim=dim)
-
-
-#
 # Bit Vector Generators
 #
-
 
 class BitvecGenerator:
     def __iter__(self):
@@ -75,7 +53,6 @@ class all_with_norm(BitvecGenerator):
 #
 # Bit Vector Samplers
 #
-
 
 class BitvecSampler(BitvecGenerator):
     def sample(self, n: int=1):
