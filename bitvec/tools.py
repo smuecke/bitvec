@@ -28,6 +28,8 @@ def from_int(n, dim: int=None):
 
 
 def unit(k, dim: int=None):
+    if _is_iterable(k):
+        return from_int(1 << np.fromiter(k, dtype=np.int), dim=dim)
     return from_int(1 << k, dim=dim)
 
 
