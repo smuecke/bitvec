@@ -1,6 +1,13 @@
 import numpy as np
 
 
+def _is_iterable(o):
+    try:
+        iter(o)
+        return True
+    except TypeError:
+        return False
+
 #
 # Methods for Bit Vector Creation
 #
@@ -13,16 +20,20 @@ def ones(dim: int):
     return np.ones(dim, dtype=np.float64)
 
 
-def from_int(n: int, dim: int=None):
+def from_int(n, dim: int=None):
     fmt = f'0{dim}b' if dim else '0b'
+    if _is_iterable(n):
+        return np.vstack([np.fromiter(format(n_, fmt)[::-1], dtype=np.float64) for n_ in n])
     return np.fromiter(format(n, fmt)[::-1], dtype=np.float64)
 
 
-def unit(k: int, dim: int=None):
+def unit(k, dim: int=None):
     return from_int(1 << k, dim=dim)
 
 
-def from_string(string: str):
+def from_string(string):
+    if isinstance(string, list):
+        return np.vstack([np.fromiter(s, dtype=float64) for s in string])
     return np.fromiter(string, dtype=np.float64)
 
 
@@ -31,7 +42,7 @@ def from_string(string: str):
 #
 
 def norm(bitvec):
-    return bitvec.sum()
+    return bitvec.sum(-1)
 
 
 def to_int(bitvec):
